@@ -12,11 +12,20 @@ export default class Project
 
         this.sizes.on('resize',()=>
         {
-            this.resize()
+            this.resize();
+        })
+
+        this.time.on('tick',()=>
+        {
+            this.update();
         })
     }
 
     resize()
+    {
+    }
+
+    update()
     {
     }
 }
