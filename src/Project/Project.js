@@ -28,10 +28,11 @@ export default class Project
         this.sizes = new Sizes();
         this.time = new Time();
         this.scene = new THREE.Scene();
+        this.resources = new Resources(sources);
         this.camera = new Camera();
-        this.renderer = new Renderer(sources);
+        this.renderer = new Renderer();
         this.world = new World();
-        this.resources = new Resources();
+   
 
         this.sizes.on('resize',()=>
         {
