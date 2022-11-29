@@ -8,6 +8,7 @@ export default class World
     {
         this.project = new Project();
         this.scene = this.project.scene;
+        this.resources = this.project.resources;
 
         const Mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -16,7 +17,12 @@ export default class World
 
         this.scene.add(Mesh);
 
-        this.environment = new Environment();
+        this.resources.on('ready', ()=>
+        {
+            this.environment = new Environment();
+        })
+
+       
     }
 
    
