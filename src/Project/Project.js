@@ -6,6 +6,7 @@ import Renderer from './Renderer.js';
 import World from './World/World.js';
 import Resources from './Utils/Resources.js';
 import sources from './sources.js'
+import Boid from './World/Boid.js'
 
 
 
@@ -32,7 +33,9 @@ export default class Project
         this.camera = new Camera();
         this.renderer = new Renderer();
         this.world = new World();
-   
+        this.boid = new Boid();
+        this.gravity = new THREE.Vector3(0, -0.00001, 0);
+
 
         this.sizes.on('resize',()=>
         {
@@ -41,7 +44,7 @@ export default class Project
 
         this.time.on('tick',()=>
         {
-            this.update();
+           this.update();
         })
     }
 
@@ -56,5 +59,7 @@ export default class Project
     {
         this.camera.update();
         this.renderer.update();
+        this.boid.applyForce(this.gravity);
+        this.boid.update();
     }
 }

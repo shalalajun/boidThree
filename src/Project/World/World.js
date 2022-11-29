@@ -1,21 +1,17 @@
 import * as THREE from 'three';
 import Project from "../Project.js";
 import Environment from './Environment.js';
+import Boid from './Boid.js'
 
 export default class World
 {
     constructor()
     {
         this.project = new Project();
+  
         this.scene = this.project.scene;
         this.resources = this.project.resources;
 
-        const Mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial()
-        )
-
-        this.scene.add(Mesh);
 
         this.resources.on('ready', ()=>
         {
