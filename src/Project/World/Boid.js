@@ -13,10 +13,9 @@ export default class Boid
     {
         this.project = new Project();
         this.scene = this.project.scene;
-        this.vector = new THREE.Vector3();
+        this.birds;
 
-        this.position = new THREE.Vector3();
-        this.velocity = new THREE.Vector3();
+        this.velocity = new THREE.Vector3(0,0,0);
         this.acceleration = new THREE.Vector3(0,0,0);
 
         this.gravity = new THREE.Vector3(0, 0.01, 0);
@@ -40,12 +39,24 @@ export default class Boid
     update()
     {   
         this.velocity.add(this.acceleration);
-        this.position.add(this.velocity);
-        this.birds.position.add(this.position);
+        this.birds.position.add(this.velocity);
+        this.acceleration.set(0,0,0);
+       
     }
 
     applyForce(force)
     {
         this.acceleration.add(force);
+    }
+
+    edges()
+    {   
+        console.log(this.birds.position.y);
+        if(this.birds.position.y < -4)
+        {
+            this.velocity.y *= -0.8;
+            this.birds.position.y = -4;
+           
+        }
     }
 }
